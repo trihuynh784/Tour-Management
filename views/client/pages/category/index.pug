@@ -1,0 +1,14 @@
+extends ../../layouts/default.pug 
+
+block main 
+  h1 Các danh mục Tour 
+  ul.row 
+    each category of categories 
+      .col-6.mb-3 
+        .card.h-100.d-flex.flex-column
+          img.ratio.ratio-16x9.object-fit-cover(src=category.image alt=category.title style="height: 200px")
+          .card-body 
+            h5.card-title #{category.title}
+            a.btn.btn-primary(href=`/tours/${category.slug}`) Chi Tiết
+
+

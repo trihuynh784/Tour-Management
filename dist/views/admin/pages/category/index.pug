@@ -1,0 +1,40 @@
+extends ../../layouts/default.pug
+
+block main
+  h1.mb-4 #{titlePage}
+
+  .card.mb-3 
+    .card-header Danh sách danh mục
+    .card-body 
+      .row 
+        .col-8 
+
+        .col-4.text-end 
+          a.btn.btn-outline-success(href=`${prefixAdmin}/categories/create`) + Thêm mới 
+
+      table.table.table-hover.table-sm.mt-3 
+        thead 
+          tr 
+            th STT 
+            th Hình ảnh 
+            th Tiêu đề
+            th Trạng thái 
+            th Hành động
+
+        tbody
+          each category, index in categories
+            tr
+              td #{index + 1}
+              td 
+                img(src=category.image, alt=category.title, width="80")
+              td 
+                a(href=`${prefixAdmin}/categories/${category.slug}`) #{category.title}
+              td
+                if category.status === "active"
+                  span.badge.bg-success Hoạt động
+                else
+                  span.badge.bg-danger Dừng hoạt động
+              td
+                a.btn.btn-sm.btn-secondary(href=`${prefixAdmin}/categories/${category.slug}`) Chi tiết
+                a.btn.btn-sm.btn-warning.ms-2(href=`${prefixAdmin}/categories/edit/${category.slug}`) Sửa
+                a.btn.btn-sm.btn-danger.ms-2(href=`${prefixAdmin}/categories/delete/${category.slug}` button-delete=category.slug) Xóa

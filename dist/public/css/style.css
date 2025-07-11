@@ -1,0 +1,161 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+/* General Css */
+ul,
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+a {
+  text-decoration: none;
+}
+.box-head {
+  color: green;
+  margin-bottom: 20px;
+}
+/* End General Css */
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Header */
+header {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+header .logo {
+  height: 80px;
+  aspect-ratio: 1/1;
+}
+header .menu li {
+  margin-left: 10px;
+}
+/* End Header */
+
+/* Main */
+main {
+  flex: 1;
+}
+.card-tour {
+  position: relative;
+}
+.discount {
+  position: absolute;
+  right: -2%;
+  top: -2%;
+  width: 32px;
+  height: 32px;
+  background-color: #c12026;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tour-detail {
+  display: flex;
+}
+.tour-detail .inner-image {
+  border: 1px solid #b5b5b5;
+  padding: 8% 0;
+}
+.tour-detail img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.inner-title {
+  color: #c12026;
+  font-weight: 700;
+  font-size: 28px;
+}
+.inner-price-special {
+  color: #c12026;
+  font-size: 20px;
+  font-weight: 700;
+}
+.inner-price {
+  text-decoration: line-through;
+  font-size: 16px;
+  font-weight: 700;
+}
+.inner-discount {
+  top: 0;
+  right: 0;
+}
+.inner-information {
+  margin-top: 30px;
+  border: 1px solid #b5b5b5;
+  padding: 10px;
+  border-radius: 5px;
+}
+.inner-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #c12026;
+  border-bottom: 1px solid #b5b5b5;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.inner-text {
+  white-space: pre-line;
+}
+.inner-text img {
+  max-width: 100%;
+  height: auto;
+}
+/* End Main */
+
+/* Footer */
+footer {
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
+/* End Footer */
+
+/* Alert */
+[alert-add-cart-success] {
+  position: fixed;
+  top: 70px;
+  right: 15px;
+  transition: 0.3s ease;
+  z-index: 9999;
+}
+[alert-add-cart-success].alert-hidden {
+  animation-name: alert-hidden;
+  animation-fill-mode: both;
+}
+@keyframes alert-hidden {
+  from {
+    opacity: 1;
+    right: 15px;
+  }
+  to {
+    opacity: 0;
+    right: -100%;
+  }
+}
+[alert-add-cart-success] [close-alert] {
+  background-color: #ffffffc4;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* End Alert */

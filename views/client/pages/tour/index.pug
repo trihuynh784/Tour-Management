@@ -1,0 +1,17 @@
+extends ../../layouts/default.pug 
+
+block main
+  h1 #{titlePage}
+
+  ul.row
+    each tour of tours 
+      .col-6.mb-3 
+        .card.card-tour 
+          img.object-fit-cover(src=tour.image alt=tour.title style="height: 200px; width: auto")
+          .card-body 
+            h4 #{tour.title}
+            b.me-2.mb-2 #{tour.price_special.toLocaleString()}đ
+            del.mb-2 #{tour.price.toLocaleString()}đ
+            b.discount.mb-2 #{tour.discount}%
+            br
+            a.btn.btn-primary.mt-2(href=`/tours/detail/${tour.slug}`) Chi tiết 

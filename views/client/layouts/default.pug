@@ -1,0 +1,31 @@
+doctype html 
+html 
+  head 
+    title #{titlePage}
+    link(rel="shortcut icon" href="#")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+    //- Font Awesome
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css")
+    //- Bootstrap
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css")
+
+    block style 
+
+    link(rel="stylesheet", href="/css/style.css")
+
+  body
+    include ../partials/header.pug
+
+    main.p-4
+      .container
+        block main 
+
+    //- Bootstrap
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.min.js")
+
+    block script 
+    
+    script(src="/js/script.js") 
+    
+    include ../partials/footer.pug

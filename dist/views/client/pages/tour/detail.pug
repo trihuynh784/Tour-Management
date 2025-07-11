@@ -1,0 +1,78 @@
+extends ../../layouts/default.pug
+include ../../mixins/moment.pug
+
+block style 
+  //- Swiper
+  link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css")
+
+block main 
+  .alert.alert-success.alert-hidden(alert-add-cart-success) Đã thêm vào giỏ hàng thành công! <span close-alert>X</span>
+
+  .tour-detail 
+    .container.my-3 
+      .row 
+        .col-6 
+          .inner-images
+            .swiper.mySwiper2.mb-2
+              .swiper-wrapper
+                each image of tour.images
+                  .swiper-slide
+                    .inner-image
+                      img(src=image)
+              .swiper-button-next 
+              .swiper-button-prev
+
+            .swiper.mySwiper
+              .swiper-wrapper 
+                each image of tour.images 
+                  .swiper-slide 
+                    .inner-image
+                      img(src=image)
+          
+        .col-6.position-relative
+          .inner-title.mb-2 #{tour.title}
+
+          .inner-barcode.mb-2
+            <i class="fa-solid fa-barcode"></i> Mã Tour: #{tour.code}
+          
+          .inner-time-start.mb-2
+            <i class="fa-solid fa-calendar"></i> 
+            span Ngày khởi hành: 
+            +formatTime(tour.timeStart)
+            |  - 
+            +formatDate(tour.timeStart)
+        
+          .inner-stock.mb-2
+            <i class="fa-solid fa-person-walking-luggage"></i> Còn lại: #{tour.stock} chỗ
+
+          .inner-price-special #{tour.price_special.toLocaleString()}đ
+          .inner-price.mb-2 #{tour.price.toLocaleString()}đ
+          .inner-discount.discount #{tour.discount}%
+
+          form(
+            form-add-to-cart
+            tour-id=`${tour.id}`
+          ) 
+            input.form-control.mb-2(
+              type="number"
+              name="quantity"
+              value="1"
+              min="1"
+              max=tour.stock
+            )
+            button.btn.btn-success.btn-block(type="submit") Thêm vào giỏ hàng
+
+      .row
+        .col-12 
+          .inner-information
+            .inner-label Thông tin Tour 
+            .inner-text !{tour.information}
+
+        .col-12 
+          .inner-information 
+            .inner-label Lịch trình Tour
+            .inner-text !{tour.schedule}
+
+block script
+  //- Swiper
+  script(src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js")

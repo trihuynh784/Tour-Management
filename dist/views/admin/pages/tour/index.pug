@@ -1,0 +1,51 @@
+extends ../../layouts/default.pug
+
+block main
+  h1.mb-4 #{titlePage}
+
+  .card.mb-3 
+    .card-header Danh sách danh mục
+    .card-body 
+      .row 
+        .col-8 
+
+        .col-4.text-end 
+          a.btn.btn-outline-success(href=`${prefixAdmin}/tours/create`) + Thêm mới 
+
+      table.table.table-bordered.table-hover.mt-4
+        thead.table-dark
+          tr
+            th STT
+            th Hình ảnh
+            th Tiêu đề
+            th Giá
+            th % Giảm giá
+            th Giá đặc biệt
+            th Còn lại
+            th Trạng thái
+            th Vị trí
+            th Hành động
+        tbody
+          each tour, index in tours
+            tr
+              td #{index + 1}
+              td.text-center 
+                img(src=tour.image, alt=tour.title, width="80")
+              td 
+                a(href=`${prefixAdmin}/tours/${tour.slug}`) #{tour.title}
+              td #{tour.price.toLocaleString()}đ
+              td.text-center #{tour.discount}%
+              td.text-center 
+                - const specialPrice = tour.price * (1 - tour.discount / 100)
+                | #{specialPrice.toLocaleString()}đ
+              td.text-center #{tour.stock || 0}
+              td
+                if tour.status === 'active'
+                  span.badge.bg-success Active
+                else if tour.status === 'inactive'
+                  span.badge.bg-warning Inactive
+              td #{tour.position || 'N/A'}
+              td
+                a.btn.btn-sm.btn-secondary(href=`${prefixAdmin}/tours/${tour.slug}`) Chi tiết
+                a.btn.btn-sm.btn-primary.ms-2(href=`${prefixAdmin}/tours/edit/${tour.slug}`) Sửa
+                a.btn.btn-sm.btn-danger.ms-2(href=`${prefixAdmin}/tours/delete/${tour.slug}`) Xóa

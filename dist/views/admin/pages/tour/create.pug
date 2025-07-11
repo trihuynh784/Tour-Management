@@ -1,0 +1,65 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main 
+  +box-head(titlePage)
+
+  form(action=`${prefixAdmin}/tours/create` method="POST" enctype="multipart/form-data")
+    .form-group.mb-3
+      label.form-label(for="title") Tiêu đề
+      input.form-control.form-control(type="text" name="title" id="title" required)
+
+    .form-group.mb-4 
+      label.form-label(for="categoryId") Danh mục
+      select.form-control(name="category" id="categoryId" required)
+        option(value="" selected disabled) -- Chọn danh mục --
+        each category of categories
+          option(value=category.id) #{category.title}
+
+    .form-group.mb-3(upload-image)
+      label(for="images" class="d-block btn btn-primary mt-2") Chọn hình ảnh
+      input.form-control.d-none(
+        name="images"
+        id="images"
+        type='file' 
+        accept='image/*' 
+        multiple
+        upload-image-input
+      )
+      #preview-field
+        
+    .form-group.mb-3
+      label.form-label(for="price") Giá
+      input.form-control.form-control(type="number" name="price" id="price" min="0" required)
+
+    .form-group.mb-3
+      label.form-label(for="discount") % Giảm giá
+      input.form-control.form-control(type="number" name="discount" id="discount" min="0" max="100")
+
+    .form-group.mb-3
+      label.form-label(for="stock") Số lượng còn lại
+      input.form-control.form-control(type="number" name="stock" id="stock" min="0")
+
+    .form-group.mb-3
+      label.form-label(for="status") Trạng thái
+      select.form-select(name="status" id="status")
+        option(value="active") Active
+        option(value="inactive") Inactive
+
+    .form-group.mb-3  
+      label.form-label(for="timeStart") Lịch khởi hành 
+      input.form-control(type="datetime-local" name="timeStart" id="timeStart" value="0" min="0")
+
+    .form-group.mb-3 
+      label(for="information") Thông tin
+      textarea.textarea-mce(name="information" id="information")
+
+    .form-group.mb-3 
+      label(for="schedule") Lịch trình
+      textarea.textarea-mce(name="schedule" id="schedule")  
+
+    .form-group.mb-3
+      label.form-label(for="position") Vị trí
+      input.form-control.form-control(type="number" name="position" id="position" min="0")
+
+    button.btn.btn-success(type="submit") Thêm tour
